@@ -9,6 +9,9 @@ import { CustomersModule } from './customers/customers.module';
 import { BarbersModule } from './barbers/barbers.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { TelegramModule } from './telegram/telegram.module';
+import { AuthModule } from './auth/auth.module';
+import { AvailabilityModule } from './availability/availability.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -38,6 +41,9 @@ import { TelegramModule } from './telegram/telegram.module';
     BarbersModule,
     AppointmentsModule,
     TelegramModule,
+    AuthModule,
+    AvailabilityModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

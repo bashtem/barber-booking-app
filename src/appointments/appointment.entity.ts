@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Customer } from '../customers/customer.entity';
-import { AppointmentStatus } from '../enums/appointment-status.enum';
+import { AppointmentStatus } from '../enums/appointment.enum';
 import { Barber } from 'src/barbers/barber.entity';
 
 @Entity()
@@ -20,6 +20,9 @@ export class Appointment {
   @Column()
   appointmentDate: Date;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  price: number;
+
   @Column()
   duration: number; // in minutes
 
@@ -33,6 +36,21 @@ export class Appointment {
   @Column({ nullable: true })
   notes: string;
 
+  @Column({ nullable: true })
+  cancellationReason: string;
+
+  // @ManyToOne(() => Payment, { nullable: true })
+  // payment: Payment;
+
+  @Column({ type: 'int', nullable: true })
+  rating: number;
+
+  @Column({ type: 'text', nullable: true })
+  review: string;
+
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

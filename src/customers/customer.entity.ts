@@ -1,4 +1,6 @@
+import { Exclude } from 'class-transformer';
 import { Appointment } from 'src/appointments/appointment.entity';
+import { CustomerRole } from 'src/enums/customer.enum';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
@@ -15,9 +17,26 @@ export class Customer {
   @Column({ nullable: true })
   telegramId: string;
 
-  @Column({ nullable: true })
+  @Column({ unique: true })
   email: string;
 
-  @OneToMany(() => Appointment, appointment => appointment.customer)
+  @Column({ nullable: true })
+  @Exclude()
+  password: string;
+
+  @Column({
+    type: 'simple-enum',
+    enum: CustomerRole,
+    default: CustomerRole.CUSTOMER,
+  })
+  role: CustomerRole;
+
+  @Column({ default: true })
+  isActive: boolean;
+
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @OneToMany(() => Appointment, (appointment) => appointment.customer)
   appointments: Appointment[];
 }

@@ -2,7 +2,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { AppointmentsService } from 'src/appointments/appointments.service';
 import { BarbersService } from 'src/barbers/barbers.service';
 import { CustomersService } from 'src/customers/customers.service';
-import { AppointmentStatus } from 'src/enums/appointment-status.enum';
+import { AppointmentStatus } from 'src/enums/appointment.enum';
 import { Markup, Telegraf } from 'telegraf';
 
 @Injectable()

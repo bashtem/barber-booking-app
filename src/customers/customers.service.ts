@@ -15,6 +15,14 @@ export class CustomersService {
     return this.customersRepository.save(customer);
   }
 
+  async findOne(id: number): Promise<Customer | null> {
+    return this.customersRepository.findOne({ where: { id } });
+  }
+
+  async findByEmail(email: string): Promise<Customer | null> {
+    return this.customersRepository.findOne({ where: { email } });
+  }
+
   async findByTelegramId(telegramId: string): Promise<Customer | null> {
     return this.customersRepository.findOne({ where: { telegramId } });
   }
@@ -25,5 +33,10 @@ export class CustomersService {
 
   async findAll(): Promise<Customer[]> {
     return this.customersRepository.find();
+  }
+
+  async update(id: number, data: Partial<Customer>): Promise<Customer | null> {
+    await this.customersRepository.update(id, data);
+    return this.findOne(id);
   }
 }
