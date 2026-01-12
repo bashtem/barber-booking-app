@@ -1,0 +1,19 @@
+services:
+  pg_db:
+    image: postgis/postgis:16-3.5-alpine
+    container_name: barber_booking_db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: barber_booking
+    ports: ["5432:5432"]
+    networks:
+      - barber_booking_network
+    volumes:
+      - barber_booking_data:/var/lib/postgresql/data
+
+networks:
+  barber_booking_network:
+    driver: bridge
+volumes:
+  barber_booking_data:
